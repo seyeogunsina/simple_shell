@@ -46,7 +46,7 @@ void aux_help_unsetenv(void)
 
 
 /**
- * aux_help_general - Entry point for help information for the help builtin function
+ * aux_help_general - Help information for the help builtin function
  * Return: nothing
  */
 

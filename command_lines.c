@@ -3,7 +3,7 @@
 /**
  * is_cdir - checks for ":".
  * @path: the path.
- * @i: type int pointer of index.
+ * @ind: type int pointer of index.
  * Return: 1 if the path is searchable in the cd, 0 otherwise.
  */
 
@@ -45,38 +45,33 @@ char *_which(char *cmd, char **_environ)
 		len_cmd = _strlen(cmd);
 		path_token = _strtok(path_ptr, ":");
 		i = 0;
-
 		while (path_token != NULL)
 		{
 			if (is_cdir(path, &i))
 				if (stat(cmd, &st) == 0)
 					return (cmd);
-			
 			len_dir = _strlen(path_token);
 			dir = malloc(len_dir + len_cmd + 2);
 			_strcpy(dir, path_token);
 			_strcat(dir, "/");
 			_strcat(dir, cmd);
 			_strcat(dir, "\0");
-													if (stat(dir, &st) == 0)
+			if (stat(dir, &st) == 0)
 			{
 				free(path_ptr);
 				return (dir);
 			}
-													free(dir);
+			free(dir);
 			path_token = _strtok(NULL, ":");
 		}
-
 		free(path_ptr);
 		if (stat(cmd, &st) == 0)
 			return (cmd);
-
 		return (NULL);
 	}
 	if (cmd[0] == '/')
 		if (stat(cmd, &st) == 0)
 			return (cmd);
-
 	return (NULL);
 }
 
@@ -92,6 +87,7 @@ int is_executable(data_shell *datash)
 	struct stat st;
 	int i;
 	char *inp;
+
 	inp = datash->args[0];
 
 	for (i = 0; inp[i]; i++)
@@ -110,7 +106,6 @@ int is_executable(data_shell *datash)
 		{
 			if (inp[i + 1] == '.')
 				continue;
-
 			i++;
 			break;
 		}
@@ -186,7 +181,6 @@ int cmd_exec(data_shell *datash)
 
 	if (exec == -1)
 		return (1);
-
 	if (exec == 0)
 	{
 		dir = _which(datash->args[0], datash->_environ);
@@ -194,7 +188,6 @@ int cmd_exec(data_shell *datash)
 		if (check_error_cmd(dir, datash) == 1)
 			return (1);
 	}
-
 	pd = fork();
 	if (pd == 0)
 	{
@@ -202,7 +195,6 @@ int cmd_exec(data_shell *datash)
 			dir = _which(datash->args[0], datash->_environ);
 		else
 			dir = datash->args[0];
-
 		execve(dir + exec, datash->args, datash->_environ);
 	}
 	else if (pd < 0)
@@ -216,7 +208,6 @@ int cmd_exec(data_shell *datash)
 			wpd = waitpid(pd, &state, WUNTRACED);
 		} while (!WIFEXITED(state) && !WIFSIGNALED(state));
 	}
-
 	datash->status = state / 256;
 	return (1);
 }

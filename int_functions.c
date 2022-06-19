@@ -60,7 +60,7 @@ char *aux_itoa(int n)
 	}
 
 	length--;
-											do {
+	do {
 		*(buff + length) = (n1 % 10) + '0';
 		n1 = n1 / 10;
 		length--;
@@ -75,7 +75,7 @@ char *aux_itoa(int n)
 
 /**
  * _atoi - converts a string to an integer.
- * @s: input string.
+ * @str: input string.
  * Return: integer.
  */
 

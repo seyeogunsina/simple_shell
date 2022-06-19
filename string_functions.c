@@ -118,8 +118,8 @@ int _strspn(char *str, char *check)
 				bool = 0;
 				break;
 			}
-												}
-												if (bool == 1)
+		}
+		if (bool == 1)
 			break;
 	}
 	return (i);

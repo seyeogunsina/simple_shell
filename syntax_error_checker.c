@@ -48,11 +48,10 @@ int error_sep_op(char *inp, int i, char last)
 		if (last == '|')
 		{
 			cnt = repeated_char(inp, 0);
-													if (cnt == 0 || cnt > 1)
+			if (cnt == 0 || cnt > 1)
 				return (i);
 		}
 	}
-
 	if (*inp == '&')
 	{
 		if (last == ';' || last == '|')
@@ -61,12 +60,10 @@ int error_sep_op(char *inp, int i, char last)
 		if (last == '&')
 		{
 			cnt = repeated_char(inp, 0);
-
 			if (cnt == 0 || cnt > 1)
 				return (i);
 		}
 	}
-
 	return (error_sep_op(inp + 1, i + 1, *inp));
 }
 
@@ -129,12 +126,11 @@ void print_syntax_error(data_shell *datash, char *inp, int i, int bool)
 	length += _strlen(msg) + _strlen(msg2) + _strlen(msg3) + 2;
 
 	error = malloc(sizeof(char) * (length + 1));
-
 	if (error == 0)
 	{
 		free(counter);
-		return;									}
-
+		return;
+	}
 	_strcpy(error, datash->av[0]);
 	_strcat(error, ": ");
 	_strcat(error, counter);
@@ -142,7 +138,6 @@ void print_syntax_error(data_shell *datash, char *inp, int i, int bool)
 	_strcat(error, msg);
 	_strcat(error, msg3);
 	_strcat(error, "\0");
-
 	write(STDERR_FILENO, error, length);
 	free(error);
 	free(counter);

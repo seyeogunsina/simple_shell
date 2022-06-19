@@ -15,32 +15,26 @@ void cd_dot(data_shell *datash)
 	copy_pwd = _strdup(pwd);
 	set_env("OLDPWD", copy_pwd, datash);
 	dir = datash->args[1];
-
 	if (_strcmp(".", dir) == 0)
 	{
 		set_env("PWD", copy_pwd, datash);
 		free(copy_pwd);
 		return;
 	}
-
 	if (_strcmp("/", copy_pwd) == 0)
 	{
 		free(copy_pwd);
 		return;
 	}
-
 	copy_strtok_pwd = copy_pwd;
 	rev_string(copy_strtok_pwd);
 	copy_strtok_pwd = _strtok(copy_strtok_pwd, "/");
-
 	if (copy_strtok_pwd != NULL)
 	{
 		copy_strtok_pwd = _strtok(NULL, "\0");
-
 		if (copy_strtok_pwd != NULL)
 			rev_string(copy_strtok_pwd);
 	}
-
 	if (copy_strtok_pwd != NULL)
 	{
 		chdir(copy_strtok_pwd);
@@ -51,7 +45,6 @@ void cd_dot(data_shell *datash)
 		chdir("/");
 		set_env("PWD", "/", datash);
 	}
-
 	datash->status = 0;
 	free(copy_pwd);
 }
@@ -109,7 +102,7 @@ void cd_previous(data_shell *datash)
 		copy_oldpwd = _strdup(present_oldpwd);
 
 	set_env("OLDPWD", copy_pwd, datash);
-									
+
 	if (chdir(copy_oldpwd) == -1)
 		set_env("PWD", copy_pwd, datash);
 	else
@@ -122,7 +115,7 @@ void cd_previous(data_shell *datash)
 
 	if (present_oldpwd)
 		free(copy_oldpwd);
-											datash->status = 0;
+	datash->status = 0;
 	chdir(present_pwd);
 }
 

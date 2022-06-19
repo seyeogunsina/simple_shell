@@ -23,7 +23,7 @@ char *_strdup(const char *str)
 
 /**
  * _strlen - Returns the length of a string.
- * @s: a pointer to the target string
+ * @str: a pointer to the target string
  * Return: Always 0.
  */
 
@@ -88,11 +88,9 @@ char *_strtok(char str[], const char *delim)
 		i = _strlen(str);
 		str_end = &str[i]; /*Store last address*/
 	}
-
 	str_start = splitted;
 	if (str_start == str_end) /*Reaching the end*/
 		return (NULL);
-
 	for (bool = 0; *splitted; splitted++)
 	{
 		/*Breaking loop finding the next token*/
@@ -111,14 +109,11 @@ char *_strtok(char str[], const char *delim)
 				break;
 			}
 		}
-
 		if (bool == 0 && *splitted) /*Str != Delim*/
 			bool = 1;
 	}
-
 	if (bool == 0) /*Str == Delim*/
 		return (NULL);
-
 	return (str_start);
 }
 
