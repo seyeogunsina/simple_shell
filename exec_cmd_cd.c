@@ -8,7 +8,7 @@
 
 int cd_shell(data_shell *datash)
 {
-	char *dir_name;
+	char *dir;
 	int is_home_full, is_home_sym, is_double_dash;
 
 	dir = datash->args[1];

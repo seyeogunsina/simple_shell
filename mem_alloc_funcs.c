@@ -10,8 +10,8 @@
 
 void _memcpy(void *newptr, const void *ptr, unsigned int size)
 {
-	char *ptr_cpy = (char *)ptr_cpy;
-	char *newptr_cpy = (char *)newptr_cpy;
+	char *ptr_cpy = (char *)ptr;
+	char *newptr_cpy = (char *)newptr;
 	unsigned int i;
 
 	i = 0;
